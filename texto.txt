@@ -1,0 +1,58 @@
+ESTACIONAMENTO PNF
+
+5 carros no patio 1(pilha)
+10 carros no patio 2(fila)
+
+O proximo carro a sair sempre precisa da saida livre
+No patio 2 quando um carro sai os outros sao movidos uma casa para frente
+Valor :R$3/hora
+A cada carro ocorre um check in e depois um check out,verificando se ha vaga em
+um dos dois patios
+
+Check in:
+	placa do novo carro(4 digitos)
+	horario de chegada
+	total de horas estacionado
+	(1h + 12h = 13h),padrao 24h
+	Nao pode ter carros com placa duplicada,o sistema deve notificar
+
+Check out:
+	necessario imprimir todos os carros(placa e valor - C/S desconto)
+	remover os carros com horario de saida expirado:remove todos com horario de saida <= horario entrada carro novo
+	
+Vagas:
+	Ambos vazios:Vai para o patio 1
+	So o patio 2 vazio:vai para o patio 2
+	So o patio 1 vazio:vai para o patio 1
+	Nenhum vazio:
+		P1:adiciona carro se horario saida novo <= horario saida velho
+		P2:addiciona carro se horario saida novo >= horario saida velho
+		Satisfazendo os dois pode escolher qualquer patio
+		
+Rejeicao:
+	Estacionamento cheio
+	Horario de entrada ou saida fora do padrao(8h ~ 22h)
+	Nenhuma regra disponibilidade cumprida
+	Apresentar justificativa para a recusa			
+	
+TAD CARRO:
+	placa(int)
+	horario chegada(int)
+	horario saira(int)
+	desconto(float)
+	funcoes:
+		Registra carro(1):regras de check in,out,vagas e rejeicao
+		Imprimi carros(2):imprime todos os carros estacionados(placa,patio,valor)
+		Sair(3):fecha e desaloca tudo
+		
+		
+DESCONTOS:
+	desconto de 10%no total
+	Um mesmo carro pode ser escolhido mais de uma vez,mas o desconto nao muda
+	entre o check out e as vagas	
+	So acontece se tem pelo menos 25% de carros(3,75)
+	So acontece se entra carro nos horarios(9h, 12h, 15h, 18h),nao considera o carro novo
+	Um vetor roleta com a quantidade de carros
+	gera um numero aleatorio
+	caso o numero for maior que o vetor,restarta no zero
+	Deve haver uma mensagem falando a placa e o valor com desconto		

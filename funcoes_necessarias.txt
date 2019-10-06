@@ -1,0 +1,13 @@
+void aloca_pilha(*p, int tamanho);
+void aloca_fila(*f, int tamanho);
+int busca_placa(*p, *f);
+void imprime_carros(*p, *f);
+void retira_carros(*p, *f, int entrada);
+void adiciona_pilha(p, placa, entrada, entrada+total_horas);
+void adiciona_fila(f, placa, entrada, entrada+total_horas);
+tamanho_pilha(p);
+tamanho_fila(f);
+horario_vale_fila(p, entrada+total_horas);
+horario_vale_fila(f, entrada+total_horas);
+desaloca_pilha(p);
+desaloca_fila(f);
