@@ -6,16 +6,20 @@
 	#include <stdlib.h>
 	#include <stdio.h>
 	
-	#define TAM 5	
+	#define TAM_PILHA 5	
 	typedef struct pilha PILHA;
 	
 	PILHA* pilha_criar(void);
 	void pilha_apagar(PILHA** pilha);
+	
 	int pilha_vazia(PILHA* pilha);
 	int pilha_tamanho(PILHA* pilha);
-	ITEM* pilha_topo(PILHA* pilha);
-	int pilha_empilhar(PILHA* pilha, CARRO* vrum);
-	ITEM* pilha_desempilhar(PILHA* pilha);
-	void pilha_print(PILHA* p);
+	int pilha_buscar(PILHA* pilha, int chave);
+	CARRO* pilha_topo(PILHA* pilha);
+
+	int pilha_empilhar(PILHA* pilha, CARRO* carro);
+	CARRO* pilha_desempilhar(PILHA* pilha);
+
+	void pilha_imprime(PILHA* pilha);
 	
 	#endif

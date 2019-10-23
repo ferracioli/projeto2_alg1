@@ -1,24 +1,52 @@
 #include "carro.h"
 
-struct vrum{
+struct carro{
 	int placa;
 	int horario_chegada;
 	int horario_saida;
 	float desconto;
 };
 
-void libera_carro(CARRO *vrum){
-	free(vrum);
+void libera_carro(CARRO *c){
+	free(c);
 	return;
 }
 
 CARRO *aloca_carro(int placa, int entrada, int total){
-	CARRO *vrum = (CARRO*)malloc(sizeof(CARRO));
-	if(vrum==NULL)
+
+	CARRO *c = (CARRO*)malloc(sizeof(CARRO));
+	if(c==NULL)
 		exit(1);
-	vrum->placa = placa;
-	vrum->horario_chegada = entrada;
-	vrum->horario_saida = entrada+total;
-	vrum->desconto = 0;
-	return vrum;	
+
+	c->placa = placa;
+	c->horario_chegada = entrada;
+	c->horario_saida = entrada+total;
+	c->desconto = 0;
+
+	return c;	
+
+}
+
+void imprime_carro(CARRO *c){
+
+	printf("Placa: %d\n", c->placa);
+	
+}
+
+int carro_placa(CARRO *carro){
+
+	return carro->placa;
+
+}
+
+int carro_entrada(CARRO *carro){
+
+	return carro->horario_chegada;
+
+}
+
+int carro_saida(CARRO *carro){
+
+	return carro->horario_saida;
+
 }
