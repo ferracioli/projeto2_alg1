@@ -8,6 +8,8 @@ void imprime_carros(PILHA *p, FILA *f);
 int horario_vale_pilha(PILHA *p, int saida);
 int horario_vale_fila(FILA *f, int saida);
 
+void erro(int codigo);
+
 int main(){
 
 	int operacao;
@@ -27,7 +29,7 @@ int main(){
 		if(operacao == 1){
 
 			//Adiciona um carro
-			int placa, entrada, total_horas, alerta = 0;
+			int placa, entrada, total_horas;
 			
 			//Check in
 
@@ -43,14 +45,17 @@ int main(){
 			printf("Digite o total de horas\n");
 			scanf("%d", &total_horas);
 			
-			alerta = placa_existe(p, f, placa); //Se ja tiver a placa, retorna 1, se não, retorna 0
+			if(placa_existe(p, f, placa)){
+				erro(1);
+				continue;
+			}
 
 			//Check out
 			imprime_carros(p, f);
 			//retira_carros(p, f, entrada);
 
 			//Verfica se está dentro do horario de funcionamento
-			if(entrada >= 8 && entrada+total_horas <= 22 && alerta == 0){
+			if(entrada >= 8 && entrada+total_horas <= 22){
 
 				//Patio 1 vazio, neste caso o patio 2 nem importa
 				if(pilha_tamanho(p) == 0){
@@ -66,7 +71,7 @@ int main(){
 					fila_inserir(f, c);
 
 				}
-				/*
+
 				//Nenhum patio vazio
 				else if(pilha_tamanho(p) < 5){
 
@@ -88,38 +93,30 @@ int main(){
 						alerta = 2;
 					}
 				}
-				*/
+
 			}
 			else{
-				alerta = 3;
-			}
-			
-			//Rejeicao
-			switch(alerta){
-				case 1:{
-					printf("REJEITADO, carro com a mesma placa registrado no sistema\n");
-					break;
-				}
-				case 2:{
-					printf("REJEITADO,estacionamento sem vagas\n");
-					break;
-				}
-				case 3:{
-					printf("REJEITADO, carro fora do horario de funcionamento\n");
-					break;
-				}
+
+				erro(3);
+				continue;
+
 			}
 
 		}
 		else if(operacao == 2){
+
 			//Imprime todos os carros
+			system("@cls||clear");
 			imprime_carros(p, f);
+
 			getchar();
+			getchar();
+
 		}
 		else
 			break;
 
-		//system("@cls||clear");
+		system("@cls||clear");
 
 	} while(operacao != 3);
 
@@ -130,6 +127,25 @@ int main(){
 	system("@cls||clear");
 	
 	return 0;
+}
+
+void erro(int codigo){
+
+	switch(codigo){
+		case 1:{
+			printf("REJEITADO, carro com a mesma placa registrado no sistema\n");
+			break;
+		}
+		case 2:{
+			printf("REJEITADO, estacionamento sem vagas\n");
+			break;
+		}
+		case 3:{
+			printf("REJEITADO, carro fora do horario de funcionamento\n");
+			break;
+		}
+	}
+
 }
 
 int placa_existe(PILHA *p, FILA *f, int placa){
@@ -150,6 +166,12 @@ void imprime_carros(PILHA *p, FILA *f){
 
 int horario_vale_pilha(PILHA *p, int saida){
 
+	return 1;
 
+}
+
+int horario_vale_fila(FILA *f, int saida){
+
+	return 1;
 
 }

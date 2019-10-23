@@ -75,9 +75,11 @@ CARRO* pilha_desempilhar(PILHA* pilha){
 	//Remove o ultimo carro e retorna ele
 	CARRO* i;
 	if ((pilha != NULL) && (!pilha_vazia(pilha))) {
+
 		i = pilha_topo(pilha);
 		pilha->topo--;
 		return (i);
+
 	}
 	return (NULL);
 }
@@ -85,8 +87,13 @@ CARRO* pilha_desempilhar(PILHA* pilha){
 void pilha_imprime(PILHA* pilha){
 
 	int i;
-	for(i=0;i<TAM_PILHA;i++)
-		if(pilha->vaga[i] != NULL)
+	for(i=0;i<TAM_PILHA;i++){
+		if(pilha->vaga[i] != NULL){
+			
 			imprime_carro(pilha->vaga[i]);
+			printf(" | PILHA\n");
+
+		}
+	}
 
 }

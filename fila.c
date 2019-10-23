@@ -112,7 +112,9 @@ void fila_imprime(FILA* fila){
 
 	int i;
     for(int i=0;i<TAM_FILA;i++)
-        if(fila->carros[i] != NULL)
+        if(fila->carros[i] != NULL){
             imprime_carro(fila->carros[i]);
+			printf(" | FILA\n");
+		}
 
 }
