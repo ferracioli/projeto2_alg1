@@ -69,6 +69,12 @@ int fila_buscar(FILA* fila, int chave){
 
 }
 
+int fila_maior_horario(FILA* fila, int chave){
+
+	return (carro_saida(fila->carros[fila->fim-1]) <= chave);
+
+}
+
 CARRO* fila_inicio(FILA* fila){
 
     return (fila->carros[fila->inicio]);

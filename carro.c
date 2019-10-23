@@ -29,7 +29,7 @@ CARRO *aloca_carro(int placa, int entrada, int total){
 
 void imprime_carro(CARRO *c){
 
-	printf("Placa: %d", c->placa);
+	printf("Placa: %04d, Valor: R$%02d.00", c->placa, (c->horario_saida-c->horario_chegada)*3);
 	
 }
 

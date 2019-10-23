@@ -53,6 +53,12 @@ int pilha_buscar(PILHA *pilha, int chave){
 
 }
 
+int pilha_menor_horario(PILHA* pilha, int chave){
+
+	return (carro_saida(pilha->vaga[pilha->topo-1]) >= chave);
+
+}
+
 CARRO* pilha_topo(PILHA* pilha){
 	//Retorna o carro no topo ou NULL
 	return ((pilha != NULL) ? pilha->vaga[pilha->topo] : NULL);

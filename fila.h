@@ -15,6 +15,7 @@
 	int fila_cheia(FILA* fila);
 	int fila_tamanho(FILA* fila);
     int fila_buscar(FILA* fila, int chave);
+    int fila_maior_horario(FILA* fila, int chave);
 
 	int fila_inserir(FILA* fila, CARRO* carro);
 	CARRO* fila_remover(FILA* fila);

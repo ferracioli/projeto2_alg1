@@ -5,9 +5,6 @@
 int placa_existe(PILHA *p, FILA *f, int placa);
 void imprime_carros(PILHA *p, FILA *f);
 
-int horario_vale_pilha(PILHA *p, int saida);
-int horario_vale_fila(FILA *f, int saida);
-
 void erro(int codigo);
 
 int main(){
@@ -60,38 +57,39 @@ int main(){
 				//Patio 1 vazio, neste caso o patio 2 nem importa
 				if(pilha_tamanho(p) == 0){
 
-					CARRO *c = aloca_carro(placa, entrada, entrada+total_horas);
+					CARRO *c = aloca_carro(placa, entrada, total_horas);
 					pilha_empilhar(p, c);
 
 				}
 				//So o patio 2 esta vazio
 				else if(fila_tamanho(f) == 0){
-					
-					CARRO *c = aloca_carro(placa, entrada, entrada+total_horas);
+
+					CARRO *c = aloca_carro(placa, entrada, total_horas);
 					fila_inserir(f, c);
 
 				}
 
 				//Nenhum patio vazio
-				else if(pilha_tamanho(p) < 5){
+				else if(pilha_tamanho(p) < 5 && pilha_menor_horario(p, entrada+total_horas)){
 
 					//Patio 1 com alguma vaga
-					if(horario_vale_pilha(p, entrada+total_horas)){
-						adiciona_pilha(p, placa, entrada, entrada+total_horas);
-					}
+					CARRO *c = aloca_carro(placa, entrada, total_horas);
+					pilha_empilhar(p, c);
+
+				}
+				else if(fila_tamanho(f) < 10 && fila_maior_horario(f, entrada+total_horas)){
+
+					//Patio 2 com alguma vaga
+					CARRO *c = aloca_carro(placa, entrada, total_horas);
+					fila_inserir(f, c);
 
 				}
 				else{
-					if(tamanho_fila(f) < 10){
-						//Patio 2 com alguma vaga
-						if(horario_vale_fila(f, entrada+total_horas)){
-							adiciona_fila(f, placa, entrada, entrada+total_horas);
-						}
-					}
-					else{
-						//Sem vagas
-						alerta = 2;
-					}
+
+					//Sem vagas
+					erro(2);
+					continue;
+
 				}
 
 			}
@@ -106,12 +104,8 @@ int main(){
 		else if(operacao == 2){
 
 			//Imprime todos os carros
-			system("@cls||clear");
 			imprime_carros(p, f);
-
-			getchar();
-			getchar();
-
+			
 		}
 		else
 			break;
@@ -131,6 +125,8 @@ int main(){
 
 void erro(int codigo){
 
+	system("@cls||clear");
+
 	switch(codigo){
 		case 1:{
 			printf("REJEITADO, carro com a mesma placa registrado no sistema\n");
@@ -146,6 +142,11 @@ void erro(int codigo){
 		}
 	}
 
+	getchar();
+	getchar();
+
+	system("@cls||clear");
+
 }
 
 int placa_existe(PILHA *p, FILA *f, int placa){
@@ -159,19 +160,12 @@ int placa_existe(PILHA *p, FILA *f, int placa){
 
 void imprime_carros(PILHA *p, FILA *f){
 
+	system("@cls||clear");
+
 	pilha_imprime(p);
 	fila_imprime(f);
 
-}
-
-int horario_vale_pilha(PILHA *p, int saida){
-
-	return 1;
-
-}
-
-int horario_vale_fila(FILA *f, int saida){
-
-	return 1;
+	getchar();
+	getchar();
 
 }

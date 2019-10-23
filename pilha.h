@@ -14,8 +14,10 @@
 	
 	int pilha_vazia(PILHA* pilha);
 	int pilha_tamanho(PILHA* pilha);
-	int pilha_buscar(PILHA* pilha, int chave);
 	CARRO* pilha_topo(PILHA* pilha);
+
+	int pilha_buscar(PILHA* pilha, int chave);
+	int pilha_menor_horario(PILHA* pilha, int chave);
 
 	int pilha_empilhar(PILHA* pilha, CARRO* carro);
 	CARRO* pilha_desempilhar(PILHA* pilha);
