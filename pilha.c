@@ -103,3 +103,17 @@ void pilha_imprime(PILHA* pilha){
 	}
 
 }
+
+int pilha_horario_topo(PILHA *pilha){
+	//Retorna o horario de saida do carro do topo
+
+	return(carro_saida(pilha_topo(pilha)));
+}
+
+void atualiza_pilha(PILHA *p, int i){
+	//Adiciona o desconto no Iesimo carro, olhando do fundo para o topo
+
+	atualiza_carro(pilha->vaga[i]);
+
+	return;
+}

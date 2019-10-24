@@ -29,7 +29,7 @@ CARRO *aloca_carro(int placa, int entrada, int total){
 
 void imprime_carro(CARRO *c){
 
-	printf("Placa: %04d, Valor: R$%02d.00", c->placa, (c->horario_saida-c->horario_chegada)*3);
+	printf("Placa: %04d, Valor: R$%.2f.00", c->placa, (c->horario_saida - c->horario_chegada)*(float)3 - c->desconto);
 	
 }
 
@@ -49,4 +49,14 @@ int carro_saida(CARRO *carro){
 
 	return carro->horario_saida;
 
+}
+
+void atualiza_carro(CARRO *carro){
+	//Adiciona o desconto para um carro
+
+	carro->desconto = (0.1)*(carro->horario_saida - carro->horario_chegada)*3;
+
+	printf(" Ocorreu um sorteio, e o carro vencedor foi :\n");
+	imprime_carro(carro);
+	return;
 }

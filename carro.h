@@ -1,12 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef CARRO_H
+	#define CARRO_H
 
-typedef struct carro CARRO;
+	#include <stdio.h>
+	#include <stdlib.h>
 
-void libera_carro(CARRO *carro);
-CARRO *aloca_carro(int placa, int entrada, int total);
-void imprime_carro(CARRO* carro);
+	typedef struct carro CARRO;
 
-int carro_placa(CARRO *carro);
-int carro_entrada(CARRO *carro);
-int carro_saida(CARRO *carro);
+	void libera_carro(CARRO *carro);
+	CARRO *aloca_carro(int placa, int entrada, int total);
+	void imprime_carro(CARRO* carro);
+
+	int carro_placa(CARRO *carro);
+	int carro_entrada(CARRO *carro);
+	int carro_saida(CARRO *carro);
+
+	void atualiza_carro(CARRO *carro);
+
+	#endif

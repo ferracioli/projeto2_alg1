@@ -124,3 +124,18 @@ void fila_imprime(FILA* fila){
 		}
 
 }
+
+
+int fila_horario_primeiro(FILA *fila){
+	//retorna o horario de saida do primeiro carro na fila
+
+	return(carro_saida(fila_inicio(fila)));
+}
+
+void atualiza_fila(FILA *fila, int i){
+	//Adiciona o desconto na conta do carro da Iesima posicao da fila
+
+	atualiza_carro(fila->carros[fila->inicio + i]);
+
+	return;
+}

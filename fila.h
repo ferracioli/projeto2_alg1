@@ -22,5 +22,8 @@
 
 	CARRO* fila_inicio(FILA* fila);
     void fila_imprime(FILA* fila);
+
+    int fila_horario_primeiro(FILA *fila);
+    void atualiza_fila(FILA *fila, int i);
 	
 	#endif

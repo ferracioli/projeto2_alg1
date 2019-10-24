@@ -1,11 +1,15 @@
 #include "carro.h"
 #include "pilha.h"
 #include "fila.h"
+#include <time.h>
 
 int placa_existe(PILHA *p, FILA *f, int placa);
 void imprime_carros(PILHA *p, FILA *f);
 
 void erro(int codigo);
+
+void retira_carros(PILHA *p, FILA *f, int entrada);
+void sorteio(PILHA *p, FILA *f, int entrada);
 
 int main(){
 
@@ -49,7 +53,10 @@ int main(){
 
 			//Check out
 			imprime_carros(p, f);
-			//retira_carros(p, f, entrada);
+			retira_carros(p, f, entrada);
+
+
+			sorteio(PILHA *p, FILA *f, int entrada);
 
 			//Verfica se está dentro do horario de funcionamento
 			if(entrada >= 8 && entrada+total_horas <= 22){
@@ -169,3 +176,77 @@ void imprime_carros(PILHA *p, FILA *f){
 	getchar();
 
 }
+
+
+void retira_carros(PILHA *p, FILA *f, int entrada){
+ 	//Remove da pilha e fila todos os carros com horario de saida <= horario de entrada
+ 	CARRO *carro;
+
+ 	while(!pilha_vazia(p) && pilha_horario_topo(p) <= entrada){
+ 		//Retira todos os carros que ja podem sair da pilha
+
+ 		carro = pilha_desempilhar(p);
+ 	}
+ 	
+ 	while(!fila_vazia(f) && fila_horario_primeiro(f) <= entrada){
+ 		//Retira todos os carros com horario esgotado na fila
+
+ 		carro = fila_remover(f);
+ 	}
+
+ 	return;
+ }
+
+
+ void sorteio(PILHA *p, FILA *f, int entrada){
+ 	int nro_carros;
+ 	nro_carros = fila_tamanho(f) + pilha_tamanho(p);
+
+ 	srand(time(NULL));
+
+ 	if(nro_carros >= 4){
+ 		//Quantidade minima para o sorteio ocorrer
+
+ 		if(entrada==9 || entrada==12 || entrada==15 || entrada==18){
+ 			//Horarios especificos dos sorteios
+
+ 			int *vetor = (int*)malloc(nro_carros, sizeof(int));//Alocacao da roleta
+ 			int aleatorio = rand() % 100;//Quantidade de movimentos ate a roleta parar
+ 			int i = 0;//Posicao em que a roleta para
+
+ 			while(aleatorio != 0){
+ 				//Verifica em qual casa a roleta para de girar
+
+ 				if(i < nro_carros-1){
+ 					i++;
+ 					aleatorio--;
+ 				}
+ 				else{
+ 					//Volta para o inicio da roleta
+ 					i = 0;
+ 					aleatorio--;
+ 				}
+ 			}
+ 			//A ordem escolhida para o vetor eh: todos os carros da pilha e todos os carros da fila em sequencia.
+ 			//Verificamos se i+1 eh maior que o tamanho da pilha,se for, o carro premiado estara na fila
+ 			//Caso contrario, o carro vencedor esta na pilha
+
+ 			if(i+1 > pilha_tamanho(p)){
+ 				//Olhamos os carros da fila
+
+ 				i -= pilha_tamanho(p);
+ 				//pois i estava guardando o tamanho da pilha junto
+
+ 				atualiza_fila(f, i);
+
+ 			}
+ 			else{
+ 				//Olhamos os carros da pilha
+
+ 				atualiza_pilha(p, i);
+ 			}
+ 			free(vetor);
+ 		}
+ 	}
+ 	return;
+ }

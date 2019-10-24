@@ -23,5 +23,7 @@
 	CARRO* pilha_desempilhar(PILHA* pilha);
 
 	void pilha_imprime(PILHA* pilha);
+	int pilha_horario_topo(PILHA *pilha);
+	void atualiza_pilha(PILHA *p, int i);
 	
 	#endif
